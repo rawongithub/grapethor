@@ -6,4 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 
 ## [Unreleased]
-+ migrate from rawongithub/grapethor gem
+
+
+## [0.1.0] - 2019-04-10
+###Added
++ migrate source code from rawongithub/graperator gem
