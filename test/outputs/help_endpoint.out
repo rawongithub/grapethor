@@ -1,0 +1,16 @@
+Usage:
+  grapethor endpoint RESOURCE [NAME]
+
+Options:
+  -p, [--path=PATH]         # Relative path to application directory
+                            # Default: .
+  -v, [--version=VERSION]   # API version tag
+                            # Default: v1
+  -m, [--method=METHOD]     # HTTP request method
+                            # Default: GET
+                            # Possible values: GET, POST, PUT, DELETE
+  -d, [--desc=DESC]         # Endpoint description
+  -a, [--params=key:value]  # Request resource (path) param
+  -q, [--query=key:value]   # Request query params
+
+Creates new Endpoint within API

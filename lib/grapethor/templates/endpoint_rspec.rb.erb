@@ -1,0 +1,11 @@
+
+
+  context '<%= end_method %> <%= end_resource.pluralize %>' do
+    let(:expected) { { status: "TODO" } }
+    it '<%= end_method.downcase %> <%= end_resource.pluralize %>' do
+      <%= end_method.downcase %> '<%= api_version %>/<%= end_resource.pluralize %>/<%= request_path_sample %>', <%= end_query_sample %>
+
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to eq(expected.to_json)
+    end
+  end

@@ -1,0 +1,91 @@
+require_relative '../../spec_helper'
+
+describe API<%= api_version %>::<%= res_name.classify.pluralize %> do
+  include Rack::Test::Methods
+
+  def app
+    API<%= api_version %>::Base
+  end
+
+  let!(:<%= res_name %>1) { create(:<%= res_name %>) }
+  let!(:<%= res_name %>2) { create(:<%= res_name %>) }
+
+
+  context 'GET /<%= api_version %>/<%= res_name.pluralize %>' do
+    let(:all_<%= res_name.pluralize %>) { <%= res_name.classify %>.all }
+
+    it 'gets all <%= res_name.pluralize %>' do
+      get '/<%= api_version %>/<%= res_name.pluralize %>'
+
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to eq(all_<%= res_name.pluralize %>.to_json)
+    end
+  end
+
+
+  context 'GET /<%= api_version %>/<%= res_name.pluralize %>/:id' do
+    let(:not_found_response) { { error: '<%= res_name.classify %> not found' } }
+
+    it 'gets <%= res_name %>' do
+      get "/<%= api_version %>/<%= res_name.pluralize %>/#{<%= res_name %>1.id}"
+
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to eq(<%= res_name %>1.to_json)
+    end
+
+    it 'returns error on <%= res_name %> not found' do
+      get "/<%= api_version %>/<%= res_name.pluralize %>/1000"
+
+      expect(last_response.status).to eq(404)
+      expect(last_response.body).to eq(not_found_response.to_json)
+    end
+  end
+
+
+  context 'POST /<%= api_version %>/<%= res_name.pluralize %>' do
+    let(:body) do
+      {
+<% res_query.each do |name, type| -%>
+      <%= name %>: <%= sample_value(type) %>,
+<% end -%>
+      }
+    end
+
+    it 'test_create_<%= res_name %>' do
+      expect do
+        post "/<%= api_version %>/<%= res_name.pluralize %>", body, { 'Content-Type' => 'application/json' }
+      end.to change { <%= res_name.classify %>.count }.by(1)
+      expect(last_response.status).to eq(201)
+    end
+  end
+
+
+  context 'PUT /<%= api_version %>/<%= res_name.pluralize %>/:id}' do
+    let(:body) do
+      {
+<% res_query.each do |name, type| -%>
+      <%= name %>: <%= sample_value(type) %>,
+<% end -%>
+      }
+    end
+
+    it 'updates <%= res_name %>' do
+      put "/<%= api_version %>/<%= res_name.pluralize %>/#{<%= res_name %>1.id}", body, { 'Content-Type' => 'application/json' }
+
+      expect(last_response.status).to eq(204)
+<% res_query.each do |name, type| -%>
+      expect(<%= res_name.classify %>.find(<%= res_name %>1.id).<%= name %>).to eq(body[:<%= name %>])
+<% end -%>
+    end
+  end
+
+
+  context 'DELETE /<%= api_version %>/<%= res_name.pluralize %>/:id}' do
+    it 'deletes <%= res_name %>' do
+      expect do
+        delete "/<%= api_version %>/<%= res_name.pluralize %>/#{<%= res_name %>1.id}"
+      end.to change { <%= res_name.classify %>.count }.by(-1)
+      expect(last_response.status).to eq(204)
+    end
+  end
+end

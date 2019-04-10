@@ -1,0 +1,43 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "9292:9292"
+    volumes:
+      - .:/<%= app_name.downcase %>
+    command: bundle exec rackup -p 9292 --host 0.0.0.0
+    depends_on:
+      - db
+
+  db:
+<% case app_db -%>
+<% when 'sqlite' -%>
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - dbdata:/root/db/
+<% when 'postgresql' -%>
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+<% when 'mysql' -%>
+    image: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      DB: <%= app_name.downcase %>_production
+      DB_USER: <%= app_name.downcase %>
+      DB_PASSWORD: <%= app_name.downcase %>
+      DB_HOST: db
+    ports:
+      - '3306:3306'
+    volumes:
+      - dbdata:/var/lib/mysql
+<% end -%>
+volumes:
+  dbdata:

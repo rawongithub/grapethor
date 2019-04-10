@@ -1,0 +1,33 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  port: 3306
+  reconnect: true
+
+local: &local
+  <<: *default
+  username: root
+  password:
+  host: <% if app_docker? %>db<% else %>localhost<% end %>
+
+remote: &remote
+  <<: *default
+  database: <%%= ENV['DB'] %%>
+  username: <%%= ENV['DB_USER'] %%>
+  password: <%%= ENV['DB_PASSWORD'] %%>
+  host: <%%= ENV['DB_HOST'] %%>
+  pool: 5
+
+development:
+  <<: *local
+  database: <%= app_name.downcase %>_development
+
+test:
+  <<: *local
+  database: <%= app_name.downcase %>_test
+
+staging:
+  <<: *remote
+
+production:
+  <<: *remote

@@ -1,0 +1,22 @@
+default: &default
+  adapter: sqlite3
+  encoding: utf8
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: db/<%= app_name.downcase %>_development.sqlite3
+
+test:
+  <<: *default
+  database: db/<%= app_name.downcase %>_test.sqlite3
+
+staging:
+  <<: *default
+  database: db/<%= app_name.downcase %>_production.sqlite3
+
+production:
+  <<: *default
+  database: db/<%= app_name.downcase %>_production.sqlite3
+

@@ -1,0 +1,19 @@
+module API
+  class Base < Grape::API
+<% unless app_prefix.empty? -%>
+    prefix :<%= app_prefix %>
+<% end -%>
+
+    # mount API<VERSION>::Base
+
+<% if app_swagger? -%>
+    add_swagger_documentation \
+      info: {
+        title: '<%= app_name %>',
+        description: '<%= app_name %> - generated with Grapethor'
+      }
+<% end -%>
+
+  end
+end
+

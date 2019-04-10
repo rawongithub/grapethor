@@ -1,0 +1,9 @@
+one:
+<% res_query.each do |name, type| -%>
+  <%= name %>: <%= sample_value(type) %>
+<% end -%>
+
+two:
+<% res_query.each do |name, type| -%>
+  <%= name %>: <%= sample_value(type) %>
+<% end -%>

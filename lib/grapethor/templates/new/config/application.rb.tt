@@ -1,0 +1,18 @@
+$LOAD_PATH.unshift File.expand_path('../api', __dir__)
+$LOAD_PATH.unshift File.expand_path('../app', __dir__)
+$LOAD_PATH.unshift __dir__
+
+require 'boot'
+require 'erb'
+
+Bundler.require :default, ENV['RACK_ENV']
+
+<% if app_orm == 'activerecord' -%>
+OTR::ActiveRecord.configure_from_file! "config/database.yml"
+<% end -%>
+
+require_rel '../app'
+require_rel '../lib'
+require_rel Dir.glob('../api/*/*', base: __dir__).reject { |f| f =~ /base\.rb/ }
+require_rel '../api/*/base.rb'
+require_rel '../api/base.rb'

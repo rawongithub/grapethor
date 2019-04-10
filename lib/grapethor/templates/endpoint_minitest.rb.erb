@@ -1,0 +1,13 @@
+
+
+  def test_<%= end_method.downcase %>_<%= end_resource.pluralize %>
+    body = {
+<% end_query.each do |name, type| -%>
+      <%= name %>: <%= sample_value(type) %>,
+<% end -%>
+    }
+    expected = { status: "TODO" }
+    <%= end_method.downcase %> '<%= api_version %>/<%= end_resource.pluralize %>/<%= request_path_sample %>', body, { 'Content-Type' => 'application/json' }
+
+    assert_equal expected.to_json, last_response.body
+  end

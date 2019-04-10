@@ -1,0 +1,14 @@
+      # <%= end_method %> <%= api_version %>/<%= end_resource.pluralize %>/<%= request_path %>
+      desc '<%= end_desc %>'
+<% unless end_query_with_params.empty? -%>
+      params do
+<% end_query_with_params.each do |name, type| -%>
+        requires :<%= name %>, type: <%= param_to_type(type) %>
+<% end -%>
+      end
+<% end -%>
+      <%= end_method.downcase %> '<%= request_path %>' do
+        { status: "TODO" }
+      end
+<% %>
+

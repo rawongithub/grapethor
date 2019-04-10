@@ -1,0 +1,10 @@
+class Create<%= res_name.classify.pluralize %> < ActiveRecord::Migration[5.2]
+  def change
+    create_table :<%= res_name.pluralize %> do |t|
+<% res_query.each do |name, type| -%>
+      t.<%= type %> :<%= name %>
+<% end -%>
+    end
+  end
+end
+
