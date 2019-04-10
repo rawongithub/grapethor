@@ -1,0 +1,18 @@
+FROM ruby:<%= app_ruby %>
+
+RUN apt-get update -qq \
+    && apt-get install -y build-essential libpq-dev nodejs \
+    && gem install bundler
+
+ENV <%= app_name.upcase %>_HOME /<%= app_name %>
+RUN mkdir $<%= app_name.upcase %>_HOME
+WORKDIR $<%= app_name.upcase %>_HOME
+
+ADD Gemfile* $<%= app_name.upcase %>_HOME/
+RUN bundle install
+
+ADD . $<%= app_name.upcase %>_HOME/
+
+EXPOSE 3000
+
+CMD ["rackup", "--host", "0.0.0.0", "-p", "3000"]

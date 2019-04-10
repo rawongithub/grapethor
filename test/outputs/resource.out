@@ -1,0 +1,17 @@
+
+Creating new resource...
+arguments: {"name"=>"thing"}
+options: {"path"=>".", "version"=>"test1", "query"=>{}}
+
+       exist  
+      create  api/test1/things.rb
+      create  api/entities/thing.rb
+      create  app/models/thing.rb
+      create  db/migrations/20190324221801_create_things.rb
+       exist  
+      create  test/api/test1/things_test.rb
+      create  test/fixtures/things.yml
+      create  test/models/thing_test.rb
+      insert  api/test1/base.rb
+
+Well done!

@@ -1,0 +1,38 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  port: 5432
+
+local: &local
+  <<: *default
+<% if app_docker? -%>
+  username: postgres
+  password:
+  host: db
+<% else -%>
+  username: <%= app_name.downcase %>
+  password: <%= app_name.downcase %>
+  host: localhost
+<% end -%>
+
+remote: &remote
+  <<: *default
+  database: <%%= ENV['DB'] %%>
+  username: <%%= ENV['DB_USER'] %%>
+  password: <%%= ENV['DB_PASSWORD'] %%>
+  host: <%%= ENV['DB_HOST'] %%>
+  pool: 5
+
+development:
+  <<: *local
+  database: <%= app_name.downcase %>_development
+
+test:
+  <<: *local
+  database: <%= app_name.downcase %>_test
+
+staging:
+  <<: *remote
+
+production:
+  <<: *remote

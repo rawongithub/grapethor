@@ -1,0 +1,95 @@
+module API<%= api_version %>
+  class <%= res_name.classify.pluralize %> < Grape::API
+    rescue_from NotFoundError, ActiveRecord::RecordNotFound do |exception|
+      error!('<%= res_name.classify %> not found', 404)
+    end
+
+    rescue_from ActiveRecord::RecordInvalid do |exception|
+      error!(exception.message, 409)
+    end
+
+
+    helpers do
+      def return_no_content_status
+        status :no_content
+        ''
+      end
+
+      def <%= res_name %>_params(params)
+        {
+<% res_query.each_key do |name| -%>
+          <%= name %>: params[:<%= name %>],
+<% end -%>
+        }
+      end
+    end
+
+
+    resource :<%= res_name.pluralize %> do
+      # GET '<%= api_version%>/<%= res_name.pluralize %>'
+      desc 'Returns <%= res_name.pluralize %> list'
+      get do
+        present <%= res_name.classify %>.all, with: API::Entities::<%= res_name.classify %>
+      end
+
+
+      # GET '<%= api_version%>/<%= res_name.pluralize %>/:id'
+      desc 'Returns <%= res_name %> by id'
+      params do
+        requires :id, type: Integer
+      end
+      get ':id' do
+        <%= res_name %> = <%= res_name.classify %>.find(params[:id])
+        raise NotFoundError if <%= res_name %>.nil?
+
+        present <%= res_name %>, with: API::Entities::<%= res_name.classify %>
+      end
+
+
+      # POST '<%= api_version%>/<%= res_name.pluralize %>'
+      desc 'Creates new <%= res_name %>'
+<% unless res_query.empty? -%>
+      params do
+  <% res_query.each do |name, type| -%>
+        requires :<%= name %>, type: <%= param_to_type(type) %>
+  <% end -%>
+      end
+<% end -%>
+      post do
+        <%= res_name %> = <%= res_name.classify %>.new(<%= res_name %>_params(params))
+        <%= res_name %>.save!
+
+        present <%= res_name %>, with: API::Entities::<%= res_name.classify %>
+      end
+
+
+      # PUT '<%= api_version%>/<%= res_name.pluralize %>/:id'
+      desc 'Updates <%= res_name %>'
+      params do
+        requires :id, type: Integer
+<% res_query.each do |name, type| -%>
+        requires :<%= name %>, type: <%= param_to_type(type) %>
+<% end -%>
+      end
+      put ':id' do
+        <%= res_name %> = <%= res_name.classify %>.find(params[:id])
+        <%= res_name %>.update_attributes!(<%= res_name %>_params(params))
+
+        return_no_content_status
+      end
+
+
+      # DELETE '<%= api_version%>/<%= res_name.pluralize %>/:id'
+      desc 'Deletes <%= res_name %>'
+      params do
+        requires :id, type: Integer
+      end
+      delete ':id' do
+        <%= res_name %> = <%= res_name.classify %>.find(params[:id])
+        <%= res_name %>.destroy!
+
+        return_no_content_status
+      end
+    end
+  end
+end

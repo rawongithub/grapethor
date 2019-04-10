@@ -1,0 +1,30 @@
+require 'rubygems'
+require 'bundler'
+
+begin
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts 'Run `bundle install` to install missing gems'
+  exit e.status_code
+end
+
+<% if app_orm == 'activerecord' -%>
+load 'tasks/otr-activerecord.rake'
+
+OTR::ActiveRecord.db_dir = 'db'
+OTR::ActiveRecord.migrations_paths = ['db/migrations']
+OTR::ActiveRecord.fixtures_path = 'test/fixtures'
+OTR::ActiveRecord.seed_file = 'seeds.rb'
+
+namespace :db do
+  # Some db tasks require your app code to be loaded; they'll expect to find it here
+  task :environment do
+    ENV['RACK_ENV'] ||= 'development'
+    require File.expand_path('config/environment', __dir__)
+  end
+end
+<% end -%>
+
+#Load tasks
+Dir.glob('lib/tasks/*.rake').each { |task| load task }

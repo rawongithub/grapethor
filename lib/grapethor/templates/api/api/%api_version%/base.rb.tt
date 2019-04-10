@@ -1,0 +1,19 @@
+module API<%= api_version %>
+  class Base < Grape::API
+    format :json
+    version '<%= api_version %>', using: :path
+
+    # mount API<%= api_version %>::<ResourceOrEndpointClass>
+
+<% if app_swagger? -%>
+    add_swagger_documentation \
+      base_path: '/<%= app_prefix %>',
+      info: {
+        title: '<%= app_name %> <%= api_version %>',
+        description: '<%= app_name %> <%= api_version %> - generated with Grapethor'
+      }
+<% end -%>
+
+  end
+end
+

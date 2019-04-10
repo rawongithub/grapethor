@@ -1,0 +1,12 @@
+
+Creating new API...
+arguments: {"version"=>"test1"}
+options: {"path"=>"."}
+
+       exist  
+      create  api/test1/base.rb
+       exist  
+      create  test/support/api_test1_test_case.rb
+      insert  api/base.rb
+
+Well done!

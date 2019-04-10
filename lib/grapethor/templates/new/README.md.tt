@@ -1,0 +1,138 @@
+# <%= app_name %>
+
+## Introduction
+
+<%= app_name %> information
+
+## Dependencies
+
+- Ruby <%= app_ruby %>
+
+## Installation
+
+Clone poject
+
+Run the setup script:
+
+ ```
+ $ bin/setup
+ ```
+
+Run application:
+
+ ```
+ $ bin/server
+ ```
+
+## Console
+
+To use console, run the following command:
+
+```
+$ bin/console
+```
+
+## Tests
+
+To execute tests, run the following command:
+
+```
+$ bundle exec rake test
+```
+
+## Routes
+
+To show the application routes, run the following command:
+
+```
+$ bundle exec rake routes
+```
+
+<% if app_swagger? -%>
+## Swagger Documentation
+
+To access swagger documentation, enter the root application address in the browser:
+
+```
+http://localhost:9292
+```
+<% end -%>
+
+<% if app_docker? -%>
+## Docker
+
+Install Docker and Docker-Compose
+
+Clone the project
+
+Build the local Dockerfile
+
+```
+$ docker-compose build
+```
+
+Setup the application:
+
+ ```
+$ docker-compose run app bundle exec bin/setup
+ ```
+
+Initialize database
+
+```
+$ docker-compose run app bundle exec rake [db:drop] db:create db:migrate db:seed
+```
+
+Get the application cluster running (`-d` - in the background)
+
+```
+$ docker-compose up -d
+```
+
+Enter application console (within running `app` container)
+
+```
+$ docker-compose exec app bundle exec bin/console
+```
+
+Run the test suite
+
+```
+docker-compose exec app bundle exec rake db:setup
+docker-compose exec app bundle exec rake test
+```
+
+Inspect logs:
+
+```
+$ docker-compose logs -f
+```
+
+Restart the cluster
+
+```
+$ docker-compose restart
+```
+
+Stop (but not destroy) the cluster
+
+```
+$ docker-compose stop
+```
+
+Start (a stopped) cluster
+
+```
+$ docker-compose start
+```
+
+Destroy the cluster (usefull if config or state gets messed up)
+
+```
+$ docker-compose down
+```
+<% end -%>
+
+## License
+
+The software is available as open source under the terms of the <%= app_license_link %>.

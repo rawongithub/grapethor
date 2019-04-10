@@ -1,0 +1,12 @@
+require_relative '../../spec_helper'
+
+describe API<%= api_version %>::<%= end_resource.classify.pluralize %> do
+  include Rack::Test::Methods
+
+  def app
+    API<%= api_version %>::Base
+  end
+
+  ### grapethor works here ###
+
+end

@@ -1,0 +1,7 @@
+FactoryBot.define do
+  factory :<%= res_name %> do
+<% res_query.each do |name, type| -%>
+    <%= name %> { <%= sample_value(type) %> }
+<% end -%>
+  end
+end

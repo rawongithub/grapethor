@@ -1,0 +1,14 @@
+require_relative '../../test_helper'
+
+class API<%= api_version %><%= end_resource.classify.pluralize %>Test < API<%= api_version %>TestCase
+  def setup
+    super
+  end
+
+  def teardown
+    super
+  end
+
+  ### grapethor works here ###
+
+end

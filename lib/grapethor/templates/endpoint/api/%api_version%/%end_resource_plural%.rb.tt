@@ -1,0 +1,14 @@
+module API<%= api_version %>
+  class <%= end_resource.classify.pluralize %> < Grape::API
+
+    # helpers do
+    #   def grape(rator)
+    #     # TODO: use it or remove
+    #   end
+    # end
+
+
+    resource :<%= end_resource.pluralize %> do
+    end
+  end
+end

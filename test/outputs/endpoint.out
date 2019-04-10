@@ -1,0 +1,14 @@
+
+Creating new endpoint...
+arguments: {"resource"=>"item", "name"=>"search"}
+options: {"path"=>".", "version"=>"test1", "method"=>"GET", "desc"=>"", "params"=>{}, "query"=>{}}
+
+       exist  api/test1
+      create  api/test1/items.rb
+      insert  api/test1/items.rb
+      insert  api/test1/base.rb
+       exist  
+      create  test/api/test1/items_test.rb
+      insert  test/api/test1/items_test.rb
+
+Well done!

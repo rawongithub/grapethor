@@ -1,0 +1,32 @@
+Usage:
+  grapethor new NAME
+
+Options:
+  -p, [--path=PATH]                # Relative path to place application directory
+                                   # Default: .
+  -x, [--prefix=PREFIX]            # Add Application URL prefix
+                                   # Default: api
+  -d, [--db=DB]                    # Use specific database
+                                   # Default: sqlite
+                                   # Possible values: sqlite, postgresql, mysql
+  -o, [--orm=ORM]                  # Use specific ORM
+                                   # Default: activerecord
+                                   # Possible values: activerecord
+  -s, [--server=SERVER]            # Preconfigure web server
+                                   # Default: thin
+                                   # Possible values: thin
+  -t, [--test=TEST]                # Use specific test framework
+                                   # Default: minitest
+                                   # Possible values: minitest, rspec
+      [--docker], [--no-docker]    # Use docker
+                                   # Default: true
+  -l, [--license=LICENSE]          # Add software license information
+                                   # Default: mit
+                                   # Possible values: mit, apache2, freebsd, newbsd, gpl2, gpl3, mpl2, cddl1, epl1
+  -c, [--copyright=COPYRIGHT]      # Add copyright information within license file
+  -r, [--ruby=RUBY]                # Ruby version for application
+                                   # Default: 2.5.3
+      [--swagger], [--no-swagger]  # Generate swagger documentation and install swagger-ui
+                                   # Default: true
+
+Creates new Grape application

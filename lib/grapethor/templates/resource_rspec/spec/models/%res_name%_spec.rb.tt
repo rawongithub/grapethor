@@ -1,0 +1,9 @@
+require_relative '../spec_helper'
+
+describe <%= res_name.classify %> do
+  let(:<%= res_name %>) { create(:<%= res_name %>) }
+
+  it 'is valid' do
+    expect(<%= res_name %>).to be_valid
+  end
+end

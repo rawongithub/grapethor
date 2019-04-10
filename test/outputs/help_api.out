@@ -1,0 +1,8 @@
+Usage:
+  grapethor api VERSION
+
+Options:
+  -p, [--path=PATH]  # Relative path to application directory
+                     # Default: .
+
+Creates new API within application

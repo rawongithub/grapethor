@@ -1,0 +1,52 @@
+
+Creating new application...
+arguments: {"name"=>"TestApp"}
+options: {"path"=>".", "prefix"=>"api", "db"=>"sqlite", "orm"=>"activerecord", "server"=>"thin", "test"=>"minitest", "docker"=>true, "license"=>"mit", "ruby"=>"2.5.3", "swagger"=>true}
+
+      create  TestApp
+      create  TestApp/.gitignore
+      create  TestApp/.grapethor.yml
+      create  TestApp/Gemfile
+      create  TestApp/README.md
+      create  TestApp/Rakefile
+      create  TestApp/api/base.rb
+      create  TestApp/app/exceptions/not_found_error.rb
+      create  TestApp/bin/console
+      create  TestApp/bin/server
+      create  TestApp/bin/setup
+      create  TestApp/config.ru
+      create  TestApp/config/application.rb
+      create  TestApp/config/boot.rb
+      create  TestApp/config/environment.rb
+      create  TestApp/db/seeds.rb
+      create  TestApp/lib/tasks/routes.rake
+       chmod  TestApp/bin/console
+       chmod  TestApp/bin/setup
+       chmod  TestApp/bin/server
+       exist  TestApp
+      create  TestApp/config/database.yml
+       exist  TestApp
+      create  TestApp/lib/tasks/test.rake
+      create  TestApp/test/support/reporters.rb
+      create  TestApp/test/support/test_case.rb
+      create  TestApp/test/test_helper.rb
+       exist  TestApp
+      create  TestApp/Dockerfile
+      create  TestApp/docker-compose.yml
+       exist  TestApp
+      create  TestApp/LICENSE
+       exist  TestApp
+      create  TestApp/swagger-ui/favicon-16x16.png
+      create  TestApp/swagger-ui/favicon-32x32.png
+      create  TestApp/swagger-ui/index.html
+      create  TestApp/swagger-ui/oauth2-redirect.html
+      create  TestApp/swagger-ui/swagger-ui-bundle.js
+      create  TestApp/swagger-ui/swagger-ui-bundle.js.map
+      create  TestApp/swagger-ui/swagger-ui-standalone-preset.js
+      create  TestApp/swagger-ui/swagger-ui-standalone-preset.js.map
+      create  TestApp/swagger-ui/swagger-ui.css
+      create  TestApp/swagger-ui/swagger-ui.css.map
+      create  TestApp/swagger-ui/swagger-ui.js
+      create  TestApp/swagger-ui/swagger-ui.js.map
+
+Well done!

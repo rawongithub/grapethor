@@ -1,0 +1,8 @@
+Commands:
+  grapethor api VERSION               # Creates new API within application
+  grapethor endpoint RESOURCE [NAME]  # Creates new Endpoint within API
+  grapethor help [COMMAND]            # Describe available commands or one specific command
+  grapethor new NAME                  # Creates new Grape application
+  grapethor resource NAME             # Creates new Resource within API
+  grapethor version                   # Displays Grapethor version
+

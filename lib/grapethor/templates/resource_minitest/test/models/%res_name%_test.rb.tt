@@ -1,0 +1,17 @@
+require_relative '../test_helper'
+
+class <%= res_name.classify %>Test < TestCase
+  def setup
+    super
+    @<%= res_name %> = <%= res_name.pluralize %>(:one)
+  end
+
+  def teardown
+    super
+  end
+
+
+  def test_valid_<%= res_name %>
+    assert @<%= res_name %>.valid?
+  end
+end

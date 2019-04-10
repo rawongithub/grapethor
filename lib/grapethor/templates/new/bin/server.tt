@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+while getopts p: option
+do
+case "${option}"
+in
+p) PORT=${OPTARG};;
+esac
+done
+
+echo "Starting <%= app_name %> application server..."
+bundle exec rackup -p ${PORT:-9292}

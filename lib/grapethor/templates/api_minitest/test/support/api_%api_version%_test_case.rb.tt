@@ -1,0 +1,12 @@
+require_relative './test_case'
+
+class API<%= api_version %>TestCase < TestCase
+  include Rack::Test::Methods
+
+  def app
+    API<%= api_version %>::Base
+  end
+end
+
+
+
