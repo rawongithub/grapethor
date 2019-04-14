@@ -17,7 +17,7 @@ module API<%= api_version %>
 
       def <%= res_name %>_params(params)
         {
-<% res_query.each_key do |name| -%>
+<% res_attrs.each_key do |name| -%>
           <%= name %>: params[:<%= name %>],
 <% end -%>
         }
@@ -48,9 +48,9 @@ module API<%= api_version %>
 
       # POST '<%= api_version%>/<%= res_name.pluralize %>'
       desc 'Creates new <%= res_name %>'
-<% unless res_query.empty? -%>
+<% unless res_attrs.empty? -%>
       params do
-  <% res_query.each do |name, type| -%>
+  <% res_attrs.each do |name, type| -%>
         requires :<%= name %>, type: <%= param_to_type(type) %>
   <% end -%>
       end
@@ -67,7 +67,7 @@ module API<%= api_version %>
       desc 'Updates <%= res_name %>'
       params do
         requires :id, type: Integer
-<% res_query.each do |name, type| -%>
+<% res_attrs.each do |name, type| -%>
         requires :<%= name %>, type: <%= param_to_type(type) %>
 <% end -%>
       end

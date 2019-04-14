@@ -2,7 +2,7 @@ module API
   module Entities
     class <%= res_name.classify %> < Grape::Entity
       expose :id
-<% res_query.each_key do |name| -%>
+<% res_attrs.each_key do |name| -%>
       expose :<%= name %>
 <% end -%>
     end

@@ -103,21 +103,21 @@ Usage:
   grapethor resource NAME
 
 Options:
-  -p, [--path=PATH]        # Relative path to application directory
-                           # Default: .
-  -v, [--version=VERSION]  # API version tag
-                           # Default: v1
-  -q, [--query=key:value]  # Request query params (model attributes)
+  -p, [--path=PATH]             # Relative path to application directory
+                                # Default: .
+  -v, [--version=VERSION]       # API version tag
+                                # Default: v1
+  -a, [--attrs=ATTRIBUTE:TYPE]  # Model attributes (use proper types or specific ORM)
 
 Creates new Resource within API
 ```
 Multiple RESOURCES may be created for single API version
 
-Note: ':id' request path parameter is implicitly used as primary key. There is no need to include it with '-q' option.
+Note: ':id' request path parameter is implicitly used as primary key. There is no need to include it with '-a' option.
 
-Param types available for `--query` option:
+Model attribute types available specific ORM:
 
-`boolean, date, datetime, decimal, float, integer, string, time`
+- activerecord: `bigint, binary, boolean, date, datetime, decimal, float, integer, numeric, string, text, time`
 
 ### Create Endpoint
 ```

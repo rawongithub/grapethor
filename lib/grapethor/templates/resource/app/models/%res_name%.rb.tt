@@ -1,5 +1,5 @@
 class <%= res_name.classify %> < ActiveRecord::Base
-<% res_query.each_key do |name| -%>
+<% res_attrs.each_key do |name| -%>
   # validates :<%= name %>, presence: true
 <% end -%>
 end

@@ -45,7 +45,7 @@ class API<%= api_version %><%= res_name.classify.pluralize %>Test < TestCase
 
   def test_create_<%= res_name %>
     body = {
-<% res_query.each do |name, type| -%>
+<% res_attrs.each do |name, type| -%>
       <%= name %>: <%= sample_value(type) %>,
 <% end -%>
     }
@@ -59,14 +59,14 @@ class API<%= api_version %><%= res_name.classify.pluralize %>Test < TestCase
 
   def test_update_<%= res_name %>
     body = {
-<% res_query.each do |name, type| -%>
+<% res_attrs.each do |name, type| -%>
       <%= name %>: <%= sample_value(type) %>,
 <% end -%>
     }
     put "/<%= api_version %>/<%= res_name.pluralize %>/#{@<%= res_name %>1.id}", body, { 'Content-Type' => 'application/json' }
 
     assert_equal 204, last_response.status
-<% res_query.each do |name, type| -%>
+<% res_attrs.each do |name, type| -%>
     assert_equal body[:<%= name %>], <%= res_name.classify %>.find(@<%= res_name %>1.id).<%= name %>
 <% end -%>
   end

@@ -9,7 +9,7 @@ module Grapethor
     attr_reader :api_version,
                 :app_path,
                 :res_name,
-                :res_query,
+                :res_attrs,
                 :res_desc
 
     namespace :resource
@@ -37,15 +37,16 @@ module Grapethor
                            default: 'v1',
                            desc: 'API version tag'
 
-    class_option :query,   aliases: '-q',
+    class_option :attrs,   aliases: '-a',
                            type: :hash,
                            default: {},
-                           desc: 'Request query params (model attributes)'
+                           desc: "Model attributes (use proper types for specific ORM)",
+                           banner: "ATTRIBUTE:TYPE"
 
 
     def parse_args_and_opts
       @res_name    = name.downcase.singularize
-      @res_query   = options[:query].delete_if { |k, v| k == 'id' }.map { |k, v| [k, v.downcase] }.to_h
+      @res_attrs   = options[:attrs].delete_if { |k, v| k == 'id' }.map { |k, v| [k, v.downcase] }.to_h
       @api_version = options[:version].downcase
       @app_path    = options[:path]
     end

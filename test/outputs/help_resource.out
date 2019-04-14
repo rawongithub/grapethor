@@ -2,10 +2,10 @@ Usage:
   grapethor resource NAME
 
 Options:
-  -p, [--path=PATH]        # Relative path to application directory
-                           # Default: .
-  -v, [--version=VERSION]  # API version tag
-                           # Default: v1
-  -q, [--query=key:value]  # Request query params (model attributes)
+  -p, [--path=PATH]             # Relative path to application directory
+                                # Default: .
+  -v, [--version=VERSION]       # API version tag
+                                # Default: v1
+  -a, [--attrs=ATTRIBUTE:TYPE]  # Model attributes (use proper types or specific ORM)
 
 Creates new Resource within API

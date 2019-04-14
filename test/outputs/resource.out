@@ -1,7 +1,7 @@
 
 Creating new resource...
 arguments: {"name"=>"thing"}
-options: {"path"=>".", "version"=>"test1", "query"=>{}}
+options: {"path"=>".", "version"=>"test1", "attrs"=>{}}
 
        exist  
       create  api/test1/things.rb

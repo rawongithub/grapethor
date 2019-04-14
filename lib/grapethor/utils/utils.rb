@@ -3,38 +3,58 @@ require 'bigdecimal'
 module Grapethor
   module Utils
 
-    VALID_QUERY_PARAMS = {
-      boolean: {
-        type: 'Boolean',
-        sample: true
-      },
-      date: {
-        type: 'Date',
-        sample: "'<%= Date.today %>'"
-      },
-      datetime: {
-        type: 'DateTime',
-        sample: "'<%= DateTime.now %>'"
-      },
-      decimal: {
-        type: 'BigDecimal',
-        sample: BigDecimal(123.45, 2)
-      },
-      float: {
-        type: 'Float',
-        sample: 123.45
-      },
-      integer: {
-        type: 'Integer',
-        sample: 123
-      },
-      string: {
-        type: 'String',
-        sample: "'MyString'"
-      },
-      time: {
-        type: 'Time',
-        sample: "'<%= Time.now %>'"
+    CONFIG_FILENAME = '.grapethor.yml'
+
+    ATTRS_MAP = {
+      activerecord: {
+        bigint: {
+          type: 'Integer',
+          sample: 123456789
+        },
+        # binary: {
+        #   type: '',
+        #   sample:
+        # },
+        boolean: {
+          type: 'Boolean',
+          sample: true
+        },
+        date: {
+          type: 'Date',
+          sample: "'<%= Date.today %>'"
+        },
+        datetime: {
+          type: 'DateTime',
+          sample: "'<%= DateTime.now %>'"
+        },
+        decimal: {
+          type: 'BigDecimal',
+          sample: BigDecimal(123.45, 2)
+        },
+        float: {
+          type: 'Float',
+          sample: 123.45
+        },
+        integer: {
+          type: 'Integer',
+          sample: 123
+        },
+        numeric: {
+          type: 'Numeric',
+          sample: 123
+        },
+        string: {
+          type: 'String',
+          sample: "'MyString'"
+        },
+        text: {
+          type: 'String',
+          sample: "'MyText'"
+        },
+        time: {
+          type: 'Time',
+          sample: "'<%= Time.now %>'"
+        }
       }
     }
 
@@ -66,12 +86,12 @@ module Grapethor
 
 
     def param_to_type(param)
-      VALID_QUERY_PARAMS.dig(param.to_sym, :type) || 'Unknown'
+      ATTRS_MAP.dig(app_orm.to_sym, param.to_sym, :type) || 'Unknown'
     end
 
 
     def sample_value(param, path=false)
-      val = VALID_QUERY_PARAMS.dig(param.to_sym, :sample)
+      val = ATTRS_MAP.dig(app_orm.to_sym, param.to_sym, :sample)
       if path && val.respond_to?(:tr!)
         val.tr!("'", "")
       end
@@ -80,8 +100,7 @@ module Grapethor
 
 
     def app_test_framework
-      return 'minitest' if File.read('Gemfile').include? "gem 'minitest'"
-      return 'rspec'    if File.read('Gemfile').include? "gem 'rspec'"
+      YAML.load(File.read(CONFIG_FILENAME))['app_test_framework']
     end
 
 
@@ -89,5 +108,9 @@ module Grapethor
       TEST_FRAMEWORK_DIRNAME[app_test_framework.to_sym]
     end
 
+
+    def app_orm
+      YAML.load(File.read(CONFIG_FILENAME))['app_orm']
+    end
   end
 end
