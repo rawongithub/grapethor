@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## [Unreleased]
 
 
+## [0.2.0] - 2019-04-17
+### Changed
++ improve support for resource generator options
+
+
 ## [0.1.0] - 2019-04-10
 ###Added
 + migrate source code from rawongithub/graperator gem
