@@ -39,8 +39,8 @@ describe Grapethor do
     end
     cmd = capture_subprocess_io do
       Dir.chdir(@app_name) do
-        fake_time = Time.new(2019, 03, 24, 22, 18, 01)
-        Time.stub :now, fake_time do
+        stub_time = Time.new(2019, 03, 24, 22, 18, 01)
+        Time.stub :now, stub_time do
           ::Grapethor::CLI.start %W[ resource #{@resource_name} -v #{@api_version} ]
         end
 

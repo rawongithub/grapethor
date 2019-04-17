@@ -1,4 +1,5 @@
 require 'bigdecimal'
+require 'date'
 
 module Grapethor
   module Utils
@@ -21,11 +22,11 @@ module Grapethor
         },
         date: {
           type: 'Date',
-          sample: "'<%= Date.today %>'"
+          sample: Date.today
         },
         datetime: {
           type: 'DateTime',
-          sample: "'<%= DateTime.now %>'"
+          sample: DateTime.now
         },
         decimal: {
           type: 'BigDecimal',
@@ -45,18 +46,19 @@ module Grapethor
         },
         string: {
           type: 'String',
-          sample: "'MyString'"
+          sample: 'MyString'
         },
         text: {
           type: 'String',
-          sample: "'MyText'"
+          sample: "MyText"
         },
         time: {
           type: 'Time',
-          sample: "'<%= Time.now %>'"
+          sample: Time.now
         }
       }
     }
+
 
     TEST_FRAMEWORK_DIRNAME = {
       minitest: 'test',
