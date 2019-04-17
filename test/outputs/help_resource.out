@@ -6,6 +6,6 @@ Options:
                                 # Default: .
   -v, [--version=VERSION]       # API version tag
                                 # Default: v1
-  -a, [--attrs=ATTRIBUTE:TYPE]  # Model attributes (use proper types or specific ORM)
+  -a, [--attrs=ATTRIBUTE:TYPE]  # Model attributes (use proper types for specific ORM)
 
 Creates new Resource within API
