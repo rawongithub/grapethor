@@ -85,5 +85,10 @@ module Grapethor
     def res_name_plural
       res_name.pluralize
     end
+
+    def app_prefix
+      @app_prefix ||= YAML.load(File.read(CONFIG_FILENAME))['app_prefix']
+    end
+
   end
 end

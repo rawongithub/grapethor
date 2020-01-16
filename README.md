@@ -115,7 +115,7 @@ Multiple RESOURCES may be created for single API version
 
 Note: ':id' request path parameter is implicitly used as primary key. There is no need to include it with '-a' option.
 
-Model attribute types available specific ORM:
+Model attribute types available for specific ORM:
 
 - activerecord: `bigint, binary, boolean, date, datetime, decimal, float, integer, numeric, string, text, time`
 

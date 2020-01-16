@@ -21,7 +21,7 @@ class API<%= api_version %><%= res_name.classify.pluralize %>Test < TestCase
 
 
   def test_get_all_<%= res_name.pluralize %>
-    get '/<%= api_version %>/<%= res_name.pluralize %>'
+    get '/<%= app_prefix %>/<%= api_version %>/<%= res_name.pluralize %>'
 
     assert_equal 200, last_response.status
     assert_equal @all_<%= res_name.pluralize %>.to_json, last_response.body
@@ -29,14 +29,14 @@ class API<%= api_version %><%= res_name.classify.pluralize %>Test < TestCase
 
 
   def test_get_<%= res_name %>
-    get "/<%= api_version %>/<%= res_name.pluralize %>/#{@<%= res_name %>1.id}"
+    get "/<%= app_prefix %>/<%= api_version %>/<%= res_name.pluralize %>/#{@<%= res_name %>1.id}"
 
     assert_equal 200, last_response.status
     assert_equal @<%= res_name %>1.to_json, last_response.body
   end
 
   def test_get_<%= res_name %>_by_id_not_found
-    get "/<%= api_version %>/<%= res_name.pluralize %>/1000"
+    get "/<%= app_prefix %>/<%= api_version %>/<%= res_name.pluralize %>/1000"
 
     assert_equal 404, last_response.status
     assert_equal @not_found_response.to_json, last_response.body
@@ -50,7 +50,7 @@ class API<%= api_version %><%= res_name.classify.pluralize %>Test < TestCase
 <% end -%>
     }
     <%= res_name %>_count = <%= res_name.classify %>.count
-    post '/<%= api_version %>/<%= res_name.pluralize %>', body, { 'Content-Type' => 'application/json' }
+    post '/<%= app_prefix %>/<%= api_version %>/<%= res_name.pluralize %>', body, { 'Content-Type' => 'application/json' }
 
     assert_equal 201, last_response.status
     assert_equal <%= res_name %>_count + 1, <%= res_name.classify %>.count
@@ -63,7 +63,7 @@ class API<%= api_version %><%= res_name.classify.pluralize %>Test < TestCase
       <%= name %>: <%= sample_value(type) %>,
 <% end -%>
     }
-    put "/<%= api_version %>/<%= res_name.pluralize %>/#{@<%= res_name %>1.id}", body, { 'Content-Type' => 'application/json' }
+    put "/<%= app_prefix %>/<%= api_version %>/<%= res_name.pluralize %>/#{@<%= res_name %>1.id}", body, { 'Content-Type' => 'application/json' }
 
     assert_equal 204, last_response.status
 <% res_attrs.each do |name, type| -%>
@@ -74,7 +74,7 @@ class API<%= api_version %><%= res_name.classify.pluralize %>Test < TestCase
 
   def test_delete_<%= res_name %>
     <%= res_name %>_count = <%= res_name.classify %>.count
-    delete "/<%= api_version %>/<%= res_name.pluralize %>/#{@<%= res_name %>1.id}"
+    delete "/<%= app_prefix %>/<%= api_version %>/<%= res_name.pluralize %>/#{@<%= res_name %>1.id}"
 
     assert_equal 204, last_response.status
     assert_equal <%= res_name %>_count - 1, <%= res_name.classify %>.count
