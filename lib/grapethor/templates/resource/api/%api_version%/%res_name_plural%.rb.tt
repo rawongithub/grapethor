@@ -50,9 +50,9 @@ module API<%= api_version %>
       desc 'Creates new <%= res_name %>'
 <% unless res_attrs.empty? -%>
       params do
-  <% res_attrs.each do |name, type| -%>
+<% res_attrs.each do |name, type| -%>
         requires :<%= name %>, type: <%= param_to_type(type) %>
-  <% end -%>
+<% end -%>
       end
 <% end -%>
       post do
