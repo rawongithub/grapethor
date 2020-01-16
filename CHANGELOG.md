@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [0.2.1] - 2020-01-16
+### Fixed
++ fix resource generator and utils tests
+
 
 ## [0.2.0] - 2019-04-17
 ### Changed
