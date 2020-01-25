@@ -73,7 +73,7 @@ module API<%= api_version %>
       end
       put ':id' do
         <%= res_name %> = <%= res_name.classify %>.find(params[:id])
-        <%= res_name %>.update_attributes!(<%= res_name %>_params(params))
+        <%= res_name %>.update!(<%= res_name %>_params(params))
 
         return_no_content_status
       end
