@@ -7,6 +7,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [0.2.2] - 2020-02-29
+### Fixed
++ update rake requirement from ~> 10.0 to ~> 13.0
++ update thor from ~> 0.20 to ~> 1.0.1
+
 ## [0.2.1] - 2020-01-16
 ### Fixed
 + fix resource generator and utils tests
