@@ -58,7 +58,7 @@ module Grapethor
     class_option :server,    aliases: '-s',
                              type: :string,
                              default: 'thin',
-                             enum: %w[thin],
+                             enum: %w[thin puma],
                              desc: 'Preconfigure web server'
 
     class_option :test,      aliases: '-t',
