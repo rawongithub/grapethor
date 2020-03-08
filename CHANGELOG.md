@@ -7,6 +7,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [0.2.3] - 2020-03-08
+### Added
++ add 'puma' to server options
+
+### Fixed
++ fix --path option for CLI
++ fix class descriptions for tests
+
+
 ## [0.2.2] - 2020-02-29
 ### Fixed
 + update rake requirement from ~> 10.0 to ~> 13.0
@@ -23,5 +32,5 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 
 ## [0.1.0] - 2019-04-10
-###Added
+### Added
 + migrate source code from rawongithub/graperator gem
