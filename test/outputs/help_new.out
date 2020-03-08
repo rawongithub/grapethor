@@ -14,7 +14,7 @@ Options:
                                    # Possible values: activerecord
   -s, [--server=SERVER]            # Preconfigure web server
                                    # Default: thin
-                                   # Possible values: thin
+                                   # Possible values: thin, puma
   -t, [--test=TEST]                # Use specific test framework
                                    # Default: minitest
                                    # Possible values: minitest, rspec

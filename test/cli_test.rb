@@ -1,7 +1,7 @@
 require "test_helper"
 require "active_support/core_ext/string/filters"
 
-describe Grapethor do
+describe Grapethor::CLI do
 
   before do
     $PROGRAM_NAME = 'grapethor'

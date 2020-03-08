@@ -1,6 +1,6 @@
 require "test_helper"
 
-describe Grapethor::New do
+describe Grapethor::Api do
 
   before do
     $PROGRAM_NAME = 'grapethor'

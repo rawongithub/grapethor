@@ -1,4 +1,6 @@
-describe Grapethor do
+require "test_helper"
+
+describe Grapethor::Resource do
 
   before do
     $PROGRAM_NAME = 'grapethor'
