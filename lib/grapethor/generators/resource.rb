@@ -78,16 +78,43 @@ module Grapethor
       Dir.exist?("#{app_path}/api/#{api_version}")
     end
 
+
     def res_migration
       "#{Time.now.strftime("%Y%m%d%H%M%S")}_create_#{res_name.pluralize}"
     end
+
 
     def res_name_plural
       res_name.pluralize
     end
 
+
     def app_prefix
-      @app_prefix ||= YAML.load(File.read(CONFIG_FILENAME))['app_prefix']
+      @app_prefix ||= config_filename(@app_path)['app_prefix']
+    end
+
+
+    def app_test_framework
+      @app_test_framework ||= config_filename(@app_path)['app_test_framework']
+    end
+
+
+    def app_orm
+      @app_orm ||= config_filename(@app_path)['app_orm']
+    end
+
+
+    def param_to_type(param)
+      ATTRS_MAP.dig(app_orm.to_sym, param.to_sym, :type) || 'Unknown'
+    end
+
+
+    def sample_value(param, path=false)
+      val = ATTRS_MAP.dig(app_orm.to_sym, param.to_sym, :sample)
+      if path && val.respond_to?(:tr!)
+        val.tr!("'", "")
+      end
+      val || 'unknown'
     end
 
   end

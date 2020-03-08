@@ -64,15 +64,20 @@ module Grapethor
     end
 
     def app_name
-      @app_name ||= YAML.load(File.read(CONFIG_FILENAME))['app_name']
+      @app_name ||= config_filename(app_path)['app_name']
     end
 
     def app_prefix
-      @app_prefix ||= YAML.load(File.read(CONFIG_FILENAME))['app_prefix']
+      @app_prefix ||= config_filename(app_path)['app_prefix']
     end
 
     def app_swagger?
-      @app_swagger||= YAML.load(File.read(CONFIG_FILENAME))['app_swagger']
+      @app_swagger ||= config_filename(app_path)['app_swagger']
     end
+
+    def app_test_framework
+      @app_test_framework ||= config_filename(@app_path)['app_test_framework']
+    end
+
   end
 end

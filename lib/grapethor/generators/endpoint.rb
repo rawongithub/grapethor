@@ -164,5 +164,28 @@ module Grapethor
     def end_resource_plural
       end_resource.pluralize
     end
+
+
+    def app_test_framework
+      @app_test_framework ||= config_filename(@app_path)['app_test_framework']
+    end
+
+    def app_orm
+      @app_orm ||= config_filename(@app_path)['app_orm']
+    end
+
+
+    def param_to_type(param)
+      ATTRS_MAP.dig(app_orm.to_sym, param.to_sym, :type) || 'Unknown'
+    end
+
+    def sample_value(param, path=false)
+      val = ATTRS_MAP.dig(app_orm.to_sym, param.to_sym, :sample)
+      if path && val.respond_to?(:tr!)
+        val.tr!("'", "")
+      end
+      val || 'unknown'
+    end
+
   end
 end

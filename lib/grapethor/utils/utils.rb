@@ -87,22 +87,12 @@ module Grapethor
     end
 
 
-    def param_to_type(param)
-      ATTRS_MAP.dig(app_orm.to_sym, param.to_sym, :type) || 'Unknown'
-    end
-
-
-    def sample_value(param, path=false)
-      val = ATTRS_MAP.dig(app_orm.to_sym, param.to_sym, :sample)
-      if path && val.respond_to?(:tr!)
-        val.tr!("'", "")
+    def config_filename(app_path)
+      begin
+        YAML.load(File.read(File.join(app_path, CONFIG_FILENAME)))
+      rescue Errno::ENOENT, Errno::EACCES
+        say "\n ERROR: Config file not found. Try grapethor command with -p, [--path=PATH] option."
       end
-      val || 'unknown'
-    end
-
-
-    def app_test_framework
-      YAML.load(File.read(CONFIG_FILENAME))['app_test_framework']
     end
 
 
@@ -110,9 +100,5 @@ module Grapethor
       TEST_FRAMEWORK_DIRNAME[app_test_framework.to_sym]
     end
 
-
-    def app_orm
-      YAML.load(File.read(CONFIG_FILENAME))['app_orm']
-    end
   end
 end
