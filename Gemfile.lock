@@ -2,13 +2,13 @@ PATH
   remote: .
   specs:
     grapethor (0.2.3)
-      activesupport (>= 5.2, < 7.0)
+      activesupport (>= 5.2, < 8.0)
       thor (~> 1.0.1)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.1.6.1)
+    activesupport (6.1.7.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -35,7 +35,7 @@ GEM
     thor (1.0.1)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
-    zeitwerk (2.6.0)
+    zeitwerk (2.6.6)
 
 PLATFORMS
   ruby
