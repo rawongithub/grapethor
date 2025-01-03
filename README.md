@@ -11,7 +11,7 @@ Grape REST-like API generator based on Thor.
 
 Install it yourself as:
 ```
-$ gem install grapethor
+gem install grapethor
 ```
 
 ## Usage
@@ -19,7 +19,7 @@ $ gem install grapethor
 ### Get some help
 
 ```
-$ grapethor help
+grapethor help
 
 Commands:
   grapethor api VERSION               # Creates new API within application
@@ -32,7 +32,7 @@ Commands:
 
 ### Create application
 ```
-$ grapethor help new
+grapethor help new
 
 Usage:
   grapethor new NAME
@@ -79,7 +79,7 @@ License types available for `--license` option:
 
 ### Create API
 ```
-$ grapethor help api
+grapethor help api
 
 Usage:
   grapethor api VERSION
@@ -97,7 +97,7 @@ Multiple API versions may be created for single application.
 ### Create Resource
 
 ```
-$ grapethor help resource
+grapethor help resource
 
 Usage:
   grapethor resource NAME
@@ -121,7 +121,7 @@ Model attribute types available for specific ORM:
 
 ### Create Endpoint
 ```
-$ grapethor help endpoint
+grapethor help endpoint
 
 Usage:
   grapethor endpoint RESOURCE [NAME]
